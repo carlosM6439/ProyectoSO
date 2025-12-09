@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyecto Final - Sistemas Operativos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #1a252f;
+            --text-color: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Main Content */
+        main {
+            padding: 2rem 0;
+        }
+
+        .section {
+            background: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .section h2 {
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h2 i {
+            color: var(--secondary-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .feature-card {
+            background: var(--light-color);
+            border-left: 4px solid var(--secondary-color);
+            padding: 1.5rem;
+            border-radius: 4px;
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            background: #e0f0fd;
+            transform: translateX(5px);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Code Block Styles */
+        .code-block {
+            background: var(--dark-color);
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: 6px;
+            overflow-x: auto;
+            margin: 1.5rem 0;
+            font-family: 'Courier New', monospace;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .code-block code {
+            display: block;
+        }
+
+        .comment {
+            color: #8be9fd;
+            font-style: italic;
+        }
+
+        .command {
+            color: #50fa7b;
+        }
+
+        .code-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #1a1a2e;
+            padding: 0.5rem 1rem;
+            border-radius: 6px 6px 0 0;
+            margin-bottom: 0;
+        }
+
+        .code-title h4 {
+            color: white;
+        }
+
+        .copy-btn {
+            background: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+
+        .copy-btn:hover {
+            background: #2980b9;
+        }
+
+        /* Steps List */
+        .steps-list {
+            list-style-type: none;
+            counter-reset: step-counter;
+        }
+
+        .steps-list li {
+            counter-increment: step-counter;
+            margin-bottom: 1.5rem;
+            padding-left: 3.5rem;
+            position: relative;
+        }
+
+        .steps-list li:before {
+            content: counter(step-counter);
+            background: var(--secondary-color);
+            color: white;
+            font-weight: bold;
+            border-radius: 50%;
+            width: 2.5rem;
+            height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .section {
+                padding: 1.5rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="fas fa-server"></i> Proyecto Final - Sistemas Operativos</h1>
+            <p>Implementación de un servidor HTTP utilizando GitHub Pages para demostración de conceptos de sistemas operativos</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="section">
+            <h2><i class="fas fa-info-circle"></i> Acerca del Proyecto</h2>
+            <p>Este proyecto final de sistemas operativos demuestra cómo configurar y utilizar un servidor HTTP básico, aprovechando GitHub Pages como entorno de hosting. La implementación ilustra conceptos clave de administración de sistemas, redes y servidores.</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3><i class="fas fa-laptop-code"></i> Desarrollo Web</h3>
+                    <p>Creación de una página web estática utilizando HTML5, CSS3 y JavaScript para la interfaz de usuario.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><i class="fas fa-network-wired"></i> Servidor HTTP</h3>
+                    <p>Configuración de un entorno de servidor web utilizando GitHub Pages como plataforma de hosting.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><i class="fas fa-tasks"></i> Sistemas Operativos</h3>
+                    <p>Aplicación de conceptos de administración de sistemas, procesos, memoria y sistemas de archivos.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-cloud-upload-alt"></i> Configurar GitHub Pages como Servidor HTTP</h2>
+            <p>GitHub Pages permite alojar sitios web estáticos directamente desde un repositorio de GitHub. A continuación, se detallan los pasos para configurarlo:</p>
+            
+            <ol class="steps-list">
+                <li>
+                    <h3>Crear un repositorio en GitHub</h3>
+                    <p>Crea un nuevo repositorio público en GitHub con el nombre "nombreusuario.github.io" (reemplaza "nombreusuario" con tu nombre de usuario de GitHub).</p>
+                </li>
+                <li>
+                    <h3>Subir los archivos del proyecto</h3>
+                    <p>Sube todos los archivos HTML, CSS, JavaScript y recursos a la raíz del repositorio. El archivo principal debe llamarse "index.html".</p>
+                </li>
+                <li>
+                    <h3>Configurar GitHub Pages</h3>
+                    <p>Ve a la configuración del repositorio, desplázate hasta la sección "GitHub Pages" y selecciona la rama "main" como fuente.</p>
+                </li>
+                <li>
+                    <h3>Acceder al sitio web</h3>
+                    <p>Tu sitio estará disponible en "https://nombreusuario.github.io" después de unos minutos. GitHub actuará como tu servidor HTTP.</p>
+                </li>
+            </ol>
+            
+            <div class="code-title">
+                <h4>Comandos Git para subir el proyecto</h4>
+                <button class="copy-btn" onclick="copyCode('git-code')">Copiar</button>
+            </div>
+            <div class="code-block" id="git-code">
+                <code>
+                    <span class="comment"># Inicializar repositorio local</span><br>
+                    <span class="command">git init</span><br><br>
+                    
+                    <span class="comment"># Agregar todos los archivos del proyecto</span><br>
+                    <span class="command">git add .</span><br><br>
+                    
+                    <span class="comment"># Hacer commit de los cambios</span><br>
+                    <span class="command">git commit -m "Primera versión del proyecto final"</span><br><br>
+                    
+                    <span class="comment"># Conectar con el repositorio remoto en GitHub</span><br>
+                    <span class="command">git remote add origin https://github.com/tuusuario/tuusuario.github.io.git</span><br><br>
+                    
+                    <span class="comment"># Subir el código a GitHub</span><br>
+                    <span class="command">git push -u origin main</span>
+                </code>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-cogs"></i> Conceptos de Sistemas Operativos Aplicados</h2>
+            <p>Este proyecto implementa y demuestra varios conceptos clave de sistemas operativos:</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3><i class="fas fa-sitemap"></i> Gestión de Procesos</h3>
+                    <p>El servidor web maneja múltiples solicitudes HTTP concurrentes, similar a cómo un SO gestiona múltiples procesos.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><i class="fas fa-memory"></i> Administración de Memoria</h3>
+                    <p>GitHub Pages asigna recursos de memoria para servir contenido estático, ilustrando conceptos de gestión de memoria.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><i class="fas fa-folder-open"></i> Sistema de Archivos</h3>
+                    <p>La estructura de directorios y archivos en el repositorio refleja cómo los SO organizan y acceden a los datos.</p>
+                </div>
+                <div class="feature-card">
+                    <h3><i class="fas fa-shield-alt"></i> Seguridad y Permisos</h3>
+                    <p>GitHub implementa controles de acceso y permisos para los repositorios, similar a los mecanismos de seguridad de un SO.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2><i class="fas fa-code"></i> Estructura del Proyecto</h2>
+            <p>La siguiente es la estructura de archivos recomendada para el proyecto:</p>
+            
+            <div class="code-title">
+                <h4>Estructura de directorios</h4>
+            </div>
+            <div class="code-block">
+                <code>
+                    proyecto-final-sistemas-operativos/<br>
+                    │<br>
+                    ├── index.html          <span class="comment"># Archivo principal (este archivo)</span><br>
+                    ├── styles.css          <span class="comment"># Estilos CSS adicionales</span><br>
+                    ├── script.js           <span class="comment"># Funcionalidades JavaScript</span><br>
+                    ├── assets/             <span class="comment"># Carpeta para recursos</span><br>
+                    │   ├── images/         <span class="comment"># Imágenes del proyecto</span><br>
+                    │   └── docs/           <span class="comment"># Documentación técnica</span><br>
+                    └── README.md           <span class="comment"># Documentación del proyecto</span>
+                </code>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <p>&copy; 2024 Proyecto Final de Sistemas Operativos. Todos los derechos reservados.</p>
+            <p>Este sitio está alojado en GitHub Pages como servidor HTTP estático.</p>
+            <div class="social-links">
+                <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Función para copiar código al portapapeles
+        function copyCode(elementId) {
+            const codeElement = document.getElementById(elementId);
+            const textToCopy = codeElement.innerText;
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                const btn = document.querySelector(`[onclick="copyCode('${elementId}')"]`);
+                const originalText = btn.textContent;
+                btn.textContent = "¡Copiado!";
+                btn.style.background = "#27ae60";
+                
+                setTimeout(() => {
+                    btn.textContent = originalText;
+                    btn.style.background = "";
+                }, 2000);
+            });
+        }
+
+        // Animación para las secciones al hacer scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('.section');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            sections.forEach(section => {
+                section.style.opacity = 0;
+                section.style.transform = 'translateY(20px)';
+                section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
